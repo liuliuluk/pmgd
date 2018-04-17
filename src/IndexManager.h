@@ -81,12 +81,12 @@ namespace PMGD {
         Graph::IndexStats get_index_stats(IndexList *tag_entry);
 
     public:
-        IndexManager(const uint64_t region_addr, bool create)
+        IndexManager(const uint64_t region_addr, bool create, bool flush)
             : _tag_prop_map(reinterpret_cast<TagList *>(region_addr))
         {
             if (create) {
-                _tag_prop_map[0].init();
-                _tag_prop_map[1].init();
+                _tag_prop_map[0].init(flush);
+                _tag_prop_map[1].init(flush);
             }
         }
 

@@ -69,7 +69,7 @@ int fixed_allocator_test()
         pool_size = 1024;
         object_size = 32;
         os::MapRegion region1("fixedallocgraph", "region1", start_addr, pool_size, create1, create1, false);
-        FixedAllocator allocator1(start_addr, object_size, pool_size, create1);
+        FixedAllocator allocator1(start_addr, object_size, pool_size, create1, false);
         long base1 = start_addr + /* sizeof(struct RegionHeader) */64;
 
         void *addr1 = allocator1.alloc();
@@ -104,7 +104,7 @@ int fixed_allocator_test()
         pool_size = 96;
         object_size = 32;
         os::MapRegion region2("fixedallocgraph", "region2", start_addr, pool_size, create2, create2, false);
-        FixedAllocator allocator2(start_addr, object_size, pool_size, create2);
+        FixedAllocator allocator2(start_addr, object_size, pool_size, create2, false);
         long base2 = start_addr + /* sizeof(struct RegionHeader) */64;
 
         addr1 = allocator2.alloc();

@@ -50,6 +50,8 @@ namespace PMGD {
         struct GraphInit {
             bool create;
             bool read_only;
+            bool is_msync_needed; // false only when NoMsync used for msync cases.
+            bool always_msync;    // true only when AlwaysMsync used for msync cases.
             unsigned node_size;
             unsigned edge_size;
 
@@ -102,6 +104,12 @@ namespace PMGD {
         {
             if (_init.read_only)
                 throw PMGDException(ReadOnly);
+        }
+
+        void msync_options(bool &msync_needed, bool &sync)
+        {
+            msync_needed = _init.is_msync_needed;
+            sync = _init.always_msync;
         }
     };
 };
